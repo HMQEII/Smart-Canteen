@@ -41,7 +41,7 @@
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     width: 470px;
-    height: 470px;
+    height: 450px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     transform: translateX(-100%); /* Start the banner off-screen to the left */
     transition: transform 1s ease;
@@ -72,7 +72,7 @@ body {
     
     min-height: 100vh;
     background: url('public/bg2mirror.gif') no-repeat;
-    background-color: rgb(192, 225, 243);
+    background-color: rgb(229, 240, 239);
     background-size: auto;
     background-position: right;
     background-repeat: no-repeat;
@@ -412,11 +412,11 @@ header {
   
   
   .section:nth-child(even) {
-    background: #fbf7ec;
+    background: rgb(229, 240, 239);
   
   }
   .section:nth-child(odd) {
-    background: white;
+    background: whitesmoke;
 
   }
 .card{
