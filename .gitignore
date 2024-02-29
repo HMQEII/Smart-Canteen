@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# production build
+/build
+/dist
+
+# environment variables
+.env
+
+# IDE or editor specific files
+.idea
+.vscode
+
+
+# npm package lock file
+package-lock.json
