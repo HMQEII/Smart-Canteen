@@ -10,3 +10,14 @@ function closePopup() {
     const popup = document.getElementById("popup");
     popup.style.display = "none";
 }
+
+function selectUser(button) {
+    // Deselect all buttons
+    var buttons = document.querySelectorAll('.userselec button');
+    buttons.forEach(function(btn) {
+        btn.classList.remove('selected');
+    });
+    
+    // Select the clicked button
+    button.classList.add('selected');
+}

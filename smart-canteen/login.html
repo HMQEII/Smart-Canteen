@@ -60,8 +60,15 @@
                 <ion-icon name="close-outline"></ion-icon>
             </span>
             <div class="form-box login">
+                <br>
                 <h2>Login</h2>
                 <form action="" id="login-form">
+                    <div class="userselec">
+                      
+                        <button class="uselec  selected" style="margin-left: 30px;" onclick="selectUser(this)"><ion-icon name="accessibility"></ion-icon>Customer</button>
+                        <button class="uselec" style="margin-right: 30px;" onclick="selectUser(this)"><ion-icon name="man"></ion-icon>Admin</button>
+                    
+                    </div>
                     <div class="input-box">
                         <span class="icon"></span>
                         <input type="number" id="email" name="email" oninput="limitInputLength(this, 6)">  
@@ -146,7 +153,7 @@
           <ul class="try">
             <center>
             <div class="card">
-                <img src="images/delivery_1-800x600.gif" class="card_img" alt="..." >
+                <img src="public/healthy.gif" class="card_img" alt="..." >
                 <div class="card-body">
                   <p class="card-text" ><center>Healthy</center></p>
                 </div>
