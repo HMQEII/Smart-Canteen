@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cart 2 Door</title>
+        <title>Smart Canteen</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="popup.css">
         <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
@@ -84,41 +84,61 @@
           <h2>Recommendations for You</h2><br>
           <center>
           <div class="try">
-            <div class="card" id="dmart" onclick="addToSelectedListAndShowIframe('c1', 'Dmart')">
+            <div class="card" id="dmart" onclick="addToSelectedListAndShowIframe('c1', 'Manchurian')">
                 <img src="public/healthy.gif" class="card_img" alt="..." >
                 <div class="card-body">
-                  <p class="card-text"  ><center>Dmart</center></p>
+                  <p class="card-text"  ><center>Manchurian</center></p>
                 </div>
             </div>
-            <div class="card" onclick="addToSelectedListAndShowIframe('c2', 'Apolo Pharmacy')">
-                <img src="https://drive.google.com/uc?id=1q8oCJ0vkPnAfRbIdzFdTAu4SBMyW5je_" class="card_img" alt="..." >
+            <div class="card" onclick="addToSelectedListAndShowIframe('c2', 'Vada Pav')">
+                <img src="public/Vada_Pav.jpg" class="card_img" alt="..." >
                 <div class="card-body">
-                  <p class="card-text" ><center>Apolo Pharmacy</center></p>
+                  <p class="card-text" ><center>Vada Pav</center></p>
                 </div>
             </div>
-            <div class="card" onclick="addToSelectedListAndShowIframe('c3','Adarsh Supermarket')"> 
-                <img src="https://drive.google.com/uc?id=1x_GHb7ksQ-EpfkfhtcwArJ4hVRL6KB6h" class="card_img" alt="..." >
+            <div class="card"  onclick="addToSelectedListAndShowIframe('c3','Samosa')"> 
+                <img src="" class="card_img" alt="..." >
                 <div class="card-body">
-                  <p class="card-text" ><center>Adarsh Supermarket</center></p>
+                  <p class="card-text" ><center>Samosa</center></p>
                 </div>
             </div>
             <div class="card" onclick="addToSelectedListAndShowIframe('c4','Govind Store')">
                 <img src="https://drive.google.com/uc?id=1Pd0vH-wZYLpd5Kwv-zF8QRlL8N29rKv4" class="card_img" alt="..." >
                 <div class="card-body">
-                  <p class="card-text" ><center>Govind Store</center></p>
+                  <p class="card-text" ><center>Bread Pakoda</center></p>
                 </div>
             </div>
             <div class="card" onclick="addToSelectedListAndShowIframe('c5', 'Mamta Novelty')">
                 <img src="https://drive.google.com/uc?id=1cjLAulnwqArbJMQ_YitHodamqUoiPrd1" class="card_img" alt="..." >
                 <div class="card-body">
-                  <p class="card-text" ><center>Mamta Novelty</center></p>
+                  <p class="card-text" ><center>Veg Noodles</center></p>
                 </div>
             </div>
             <div class="card" onclick="addToSelectedListAndShowIframe('c6','Low Price')">
                 <img src="https://drive.google.com/uc?id=1WVvAoLEGXQvPX207YYvGWXa0kef3spz8" class="card_img" alt="..." >
                 <div class="card-body">
-                  <p class="card-text" ><center>Low Price</center></p>
+                  <p class="card-text" ><center>Veg Fried Rice</center></p>
                 </div>
+            </div>
+        </center>
+        </div>
+        <div class="section">
+            <center>
+            <h2 id="cardTitle">Select Preference</h2>
+            <div class="try" style="justify-content: center; ">
+                <div class="card" style="width: fit-content;" onclick="addToSelectedListAndShowIframe('c6','Low Price')">
+                    <img src="public/veglogo.png" class="card_img" alt="..." >
+                    <div class="card-body">
+                      <p class="card-text" ><center>Veg</center></p>
+                    </div>
+                </div>
+                <div class="card" style="width: fit-content;" onclick="addToSelectedListAndShowIframe('c6','Low Price')">
+                    <img src="public/nonveglogo.jpeg" class="card_img" alt="..." >
+                    <div class="card-body">
+                      <p class="card-text" ><center>Non-Veg</center></p>
+                    </div>
+                </div>
+            
             </div>
         </center>
         </div>

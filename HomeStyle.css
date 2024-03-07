@@ -271,6 +271,7 @@ header {
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 20px;
+    
 }
 .try::-webkit-scrollbar {
     width: 10px;
