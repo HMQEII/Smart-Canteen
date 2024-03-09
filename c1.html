@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="C_Stlyes.css">
+    <title>Document</title>
+    <script>
+      function sendingvalues(itemName, image){
+        const cardElement = event.currentTarget;
+        const price = cardElement.querySelector('.card-price').getAttribute('data-price');
+        // alert(price);
+        selectItem(itemName);
+        selectImage(image);
+        itemPrice(price);
+
+        
+      }
+        function selectItem(itemName) {
+            // Send a message to the parent page with the selected item and image
+            window.parent.postMessage({ selectedItem: itemName }, '*');
+        }
+        function selectImage(image){
+          window.parent.postMessage({ selectedImage: image }, '*');
+        }
+        function itemPrice(price){
+          window.parent.postMessage({ itemPrice: price }, '*');
+        }
+
+  </script>
+  
+</head>
+<body>
+  
+    <div class="try">
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1TwhIrKIe5PI4W1Ng09k2BgSKpauKn8SM')">
+            <img src="https://drive.google.com/thumbnail?id=1TwhIrKIe5PI4W1Ng09k2BgSKpauKn8SM" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Vada Pav</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1iuPXFQTDSnn09F9-Hcel_kW3oTv9MG0T')">
+            <img src="https://drive.google.com/thumbnail?id=1iuPXFQTDSnn09F9-Hcel_kW3oTv9MG0T" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Samosa</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1UhtuwQ63HGs-8tlV2q2oiwnLfFTLDUVx')">
+            <img src="https://drive.google.com/thumbnail?id=1UhtuwQ63HGs-8tlV2q2oiwnLfFTLDUVx" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Bread Pakoda</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1mlRmawK_E0pXm2lgOUVtzIbJw_K5SPBa')">
+            <img src="https://drive.google.com/thumbnail?id=1mlRmawK_E0pXm2lgOUVtzIbJw_K5SPBa" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Rice</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1-wgZ32Uwvm5j-APz1E611n4AFaymY6u7')">
+            <img src="https://drive.google.com/thumbnail?id=1-wgZ32Uwvm5j-APz1E611n4AFaymY6u7" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Daal</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1sIXYNs_VE_AkjjA41soTBdwHm-iJ8kZ7')">
+            <img src="https://drive.google.com/thumbnail?id=1sIXYNs_VE_AkjjA41soTBdwHm-iJ8kZ7" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Bhaji</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1_SntX6IS5Ye-ZEmdY84-WJD59lmpC-50')">
+            <img src="https://drive.google.com/thumbnail?id=1_SntX6IS5Ye-ZEmdY84-WJD59lmpC-50" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Chapati</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1bg1uUpbLCDSmx4IJvN4rZxy_6RR6n8Dp')">
+            <img src="https://drive.google.com/thumbnail?id=1bg1uUpbLCDSmx4IJvN4rZxy_6RR6n8Dp" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Noodles</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1kzoEm_-j6SUTg8k0KLKxoXnoiXMs3NJA')">
+            <img src="https://drive.google.com/thumbnail?id=1kzoEm_-j6SUTg8k0KLKxoXnoiXMs3NJA" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Fried Rice</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=12Dkmcq6kcQH8aN7V-OUJ_IFJFUxjNBfj')">
+            <img src="https://drive.google.com/thumbnail?id=12Dkmcq6kcQH8aN7V-OUJ_IFJFUxjNBfj" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Frankie</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1C3q-lOe5AGIW-p1sd1o9kgbdBeNbhAor')">
+            <img src="https://drive.google.com/thumbnail?id=1C3q-lOe5AGIW-p1sd1o9kgbdBeNbhAor" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Hot Dog</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1EnxZlu4Y0kX5ArJBsdiKryyo7wlpXKfN')">
+            <img src="https://drive.google.com/thumbnail?id=1EnxZlu4Y0kX5ArJBsdiKryyo7wlpXKfN" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Medu Vada</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1oVqbd_rREaRnVH8pTwgIFGZQc1OCAtYH')">
+            <img src="https://drive.google.com/thumbnail?id=1oVqbd_rREaRnVH8pTwgIFGZQc1OCAtYH" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Cutlet</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        <div class="card" onclick="sendingvalues('Onions', 'https://drive.google.com/thumbnail?id=1kzn8f_TvH8nk12Yr1XIEI02ufyN_uf-G')">
+            <img src="https://drive.google.com/thumbnail?id=1kzn8f_TvH8nk12Yr1XIEI02ufyN_uf-G" class="card_img" alt="..." >
+            <div class="card-body">
+              <p class="card-text" ><center>Manchurian</center></p>
+              <p class="card-price" id="cip1" data-price="40"><center>₹ 40</center></p>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+      // Add this code to each iframe page (e.g., c1.html, c2.html, etc.)
+      document.addEventListener('DOMContentLoaded', function () {
+          const cardElement = document.querySelector('.card'); // Replace with the actual selector for your card elements
+
+          cardElement.addEventListener('click', function () {
+              // Scroll to the "Selected" label in the parent window
+              window.parent.scrollToSelectedLabel();
+          });
+      });
+
+    </script>
+    <!-- <script>
+      function setPriceInCenterTag() {
+        const cardElements = document.querySelectorAll('.card');
+    
+        cardElements.forEach((cardElement, index) => {
+          const price = cardElement.querySelector('.card-price').getAttribute('data-price');
+          const priceCenter = cardElement.querySelector('.card-price center');
+          priceCenter.textContent = `₹ ${price}`;
+        });
+      }
+    
+      // Call the function when the page is loaded
+      window.addEventListener('load', setPriceInCenterTag);
+    </script> -->
+    
+    
+    
+
+</body>
+</html>

@@ -3,6 +3,7 @@ const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
 const btnPopup = document.querySelector('.btnLogin-popup');
+const tncPopup = document.querySelector('.tnc-popup');
 const iconClose = document.querySelector('.icon-close');
 const services = document.querySelector('.s_one');
 
@@ -15,6 +16,10 @@ loginLink.addEventListener('click', () => {
 });
 
 btnPopup.addEventListener('click', () => {
+  wrapper.classList.add('active-popup');
+});
+
+tncPopup.addEventListener('click', () => {
   wrapper.classList.add('active-popup');
 });
 
