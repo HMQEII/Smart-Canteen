@@ -284,26 +284,26 @@ header {
     /* background-color: #f9c19d; */
   }
 .card{
-    display: inline-block;
+    /* display: inline-block; */
     margin-top: 20px;
     margin-right: 120px;
     /* width: 50%; */
     width: 10rem;
     height: 62% !important;
-    border-radius: 50%;
+    border-radius: 20%;
     text-align: center;
     min-width: 10rem;
     border: 3px solid black;
 }
 .card-container {
-    /* display: flex;          */
+    display: flex;         
     overflow-x: auto !important;      
-    padding-bottom: 20px;             
+    padding-bottom: 20px;           
 }
 .card_img {
     width: fit-content;
     height: 100%;
-    border-radius: 100%;
+    border-radius: 20%;
     transition: box-shadow 0.3s;
 }
 

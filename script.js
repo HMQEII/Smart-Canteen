@@ -90,3 +90,15 @@ searchForm.addEventListener('submit', function (event) {
   }
   searchBox.value = ''; // Clear the search box after the search is performed
 });
+
+searchBox.addEventListener('input', function() {
+  const searchTerm = this.value;
+});
+
+searchBox.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    const searchTerm = this.value;
+    const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchTerm);
+    window.open(searchUrl, '_blank');
+  }
+});

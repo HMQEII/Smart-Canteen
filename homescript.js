@@ -82,11 +82,19 @@ function performSearch() {
 }
 
 // Listen for the Enter key press in the search input
-document.getElementById('search-box').addEventListener('keyup', function (event) {
-    if (event.key === 'Enter') {
-        performSearch();
-    }
-});
+const searchBox = document.getElementById('search-box');
+
+    searchBox.addEventListener('input', function() {
+      const searchTerm = this.value;
+    });
+
+    searchBox.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        const searchTerm = this.value;
+        const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchTerm);
+        window.open(searchUrl, '_blank');
+      }
+    });
 
 
 function addToSelectedListAndShowIframe( iframeId, itemName) {
