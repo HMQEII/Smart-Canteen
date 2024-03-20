@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barcode Scanner</title>
+</head>
+<body>
+  <h2>Barcode Scanner</h2>
+  <button id="scanBtn">Scan Barcode</button>
+  <br><br>
+  <div id="barcodeResult"></div>
+
+  <script>
+    document.getElementById('scanBtn').addEventListener('click', function() {
+      fetch('/scan_barcode')
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            document.getElementById('barcodeResult').innerText = data.error;
+          } else {
+            document.getElementById('barcodeResult').innerText = 'Scanned Barcode: ' + data.barcode;
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>

@@ -2,17 +2,26 @@
 const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
+const ForgotPasswordLink = document.querySelector('.forgot-password-link');
 const btnPopup = document.querySelector('.btnLogin-popup');
 const tncPopup = document.querySelector('.tnc-popup');
 const iconClose = document.querySelector('.icon-close');
 const services = document.querySelector('.s_one');
 
 registerLink.addEventListener('click', () => {
-  wrapper.classList.add('active');
+  wrapper.classList.remove('Factive');
+  wrapper.classList.add('active'); // Add the 'active' class to the wrapper
 });
+
+ForgotPasswordLink.addEventListener('click', () => {
+  wrapper.classList.remove('active');
+  wrapper.classList.add('Factive'); // Add the 'active' class to the wrapper
+});
+
 
 loginLink.addEventListener('click', () => {
   wrapper.classList.remove('active');
+  wrapper.classList.remove('Factive');
 });
 
 btnPopup.addEventListener('click', () => {

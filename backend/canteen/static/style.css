@@ -217,6 +217,52 @@ header {
     transition: transform .18s ease;
     transform: translateX(0);
 }
+/* .wrapper.Factive {
+    height: 520px;
+    position: relative;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+    left: 400px;
+}
+
+.wrapper .form-box.forgot-password {
+    position: absolute;
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper.active .form-box.register {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.Factive .form-box.forgot-password {
+    transition: transform .18s ease;
+    transform: translateX(0);
+} */
+
+
+
+
 .wrapper .icon-close {
     position: absolute;
     top: 0;

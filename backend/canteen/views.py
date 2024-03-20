@@ -16,3 +16,11 @@ def Veg(request):
 def NVeg(request):
   template = loader.get_template('c2.html')
   return HttpResponse(template.render())
+
+def Fpass(request):
+  template = loader.get_template('pass_forgot.html')
+  return HttpResponse(template.render())
+
+def Wallet(request):
+  template = loader.get_template('Wallet.html')
+  return HttpResponse(template.render())

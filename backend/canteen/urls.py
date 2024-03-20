@@ -9,4 +9,6 @@ urlpatterns = [
     path('Login/', views.login, name='login'),
     path('Home/Veg/', views.Veg, name='veg'),
     path('Home/NonVeg/', views.NVeg, name='nveg'),
+    path('Login/Fpass/', views.Fpass, name='fpass'),
+    path('Home/Wallet/', views.Wallet, name='wallet'),
 ]

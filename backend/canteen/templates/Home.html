@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="popup.css">
         <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
         {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'HomeStyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'HomeStyle.css' %}">
         <link rel="icon" type="image/x-icon" href="https://drive.google.com/thumbnail?id=1sNawcZcmOmCP57CemNGRqmLvrOESuS0J">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" >
     </head>
@@ -61,87 +61,7 @@
                 </label>
                 <label class="toggle-label" style="margin-left: 10px">Take Away</label>
                 <!-- <a href="" class="s_one">Take Out</a> -->
-                  <style>
-                    /* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: flex;
-  width: 60px;
-  height: 34px;
-  margin-left: 10px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: black;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px darkcyan;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-
-.navigation .toggle-label{
-    position: relative;
-    font-size: 1.1em;
-    /* color: rgb(248, 220, 188); */
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    margin-bottom: 0px;
-}
-
-
-                  </style>
+            
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <ion-icon name="person-circle-outline" class="usericon"></ion-icon>
