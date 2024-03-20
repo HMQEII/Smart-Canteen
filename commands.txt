@@ -1,0 +1,6 @@
+Command to install all the pyhton dependencies
+pip install -r requirements.txt
+
+
+Command to run project under backend folder
+py manage.py runserver
