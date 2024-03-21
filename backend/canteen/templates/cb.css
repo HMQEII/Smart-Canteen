@@ -1,49 +1,93 @@
-/* Style for chat container */
+/* WhatsApp-like Chatbot CSS */
 #chat-container {
-    width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-  }
-  
-  /* Style for chat messages */
-  #chat p {
-    margin: 5px 0;
-  }
-  
-  /* Style for user input */
-  #user-input {
-    display: flex;
-    align-items: center;
+  font-family: 'Poppins', sans-serif; /* Update font-family to Poppins */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 350px;
+  margin: auto;
+  backdrop-filter: blur(10px); /* Apply blur effect */
+}
+
+#chat {
+  background-color: rgba(229, 221, 213, 0.5); /* Transparent background color */
+  padding: 10px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+#user-input {
+  background-color: #f0f0f0;
+  padding: 10px;
+  display: flex;
+  height: 8vh;
 }
 
 #user-mood {
-    flex: 1;
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  border: none;
+  background: transparent;
 }
 
 #send-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+  background: linear-gradient(to right, #6499E9, #2EA2AA);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: large;
+  width: fit-content;
 }
 
-  
-  /* Style for chatbot response */
-  #chat p:nth-child(even) {
-    /* background-color: #e6e6e6; */
-    color: darkcyan;
-    border-radius: 5px;
-    padding: 10px;
-    text-align: right; /* Align text to the right */
+#chat-container header {
+  background: linear-gradient(to right, #6499E9, #2EA2AA);
+  color: white;
+  padding: 10px;
+  text-align: center;
 }
 
-  
+#chat p {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 20px;
+  max-width: 60%;
+}
+
+.client-msg {
+  margin-left: auto;
+}
+
+.other-msg {
+  background-color: whitesmoke;
+}
+
+/* Add an icon and user name to the header */
+#chat-container header::before {
+  content: url('path-to-user-icon.png');
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+#chat-container header::after {
+  content: 'User Name';
+  vertical-align: middle;
+}
+
+/* Apply gradient background to even messages and simple background to odd messages */
+#chat p:nth-child(even) {
+  background: linear-gradient(to right, #6499E9, #2EA2AA); /* Blue to Green gradient */
+  color: white; /* Text color for gradient backgrounds */
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+#chat p:nth-child(odd) {
+  margin-right: auto;
+  margin-left: 5px;
+  background-color: whitesmoke;
+}

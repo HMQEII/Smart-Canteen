@@ -1,41 +1,40 @@
-<!-- chatbot/templates/chatbot/suggest_order.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Chatbot</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="cb.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <!-- <div id="chat-container">
-        <div id="chat"></div>
-        <input type="text" id="user-mood" placeholder="How are you feeling? (happy/sad)">
-        <button id="send-btn">Send</button>
-    </div> -->
     <div id="chat-container">
+        <header>Chatbot</header>
         <div id="chat"></div>
         <div id="user-input">
-            <input type="text" id="user-mood" placeholder="How are you feeling? (happy/sad)">
-            <button id="send-btn">Send</button>
+            <input type="text" id="user-mood" placeholder="Type a message...">
+            <button id="send-btn"><center><ion-icon name="send"></ion-icon></center></button>
         </div>
     </div>
     
     <script>
+        
         $(document).ready(function(){
             $('#send-btn').click(function(){
                 var mood = $('#user-mood').val();
-                $('#chat').append('<p>You: My mood is ' + mood + '</p>');
+                $('#chat').append('<p class="client-msg">You: ' + mood + '</p>');
                 $('#user-mood').val('');
                 $.ajax({
                     type: 'POST',
                     url: '{% url "suggest_order" %}',
                     data: {'mood': mood, csrfmiddlewaretoken: '{{ csrf_token }}'},
                     success: function(response){
-                        $('#chat').append('<p>Chatbot: ' + response.suggested_order + '</p>');
+                        $('#chat').append('<p class="other-msg">Chatbot: ' + response.suggested_order + '</p>');
                     }
                 });
             });
         });
+        
     </script>
 </body>
 </html>
