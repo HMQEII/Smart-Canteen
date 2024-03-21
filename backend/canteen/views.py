@@ -186,3 +186,32 @@ def Veg(request):
 def NVeg(request):
   template = loader.get_template('c2.html')
   return HttpResponse(template.render())
+
+def Wallet(request):
+  template = loader.get_template('Wallet.html')
+  return HttpResponse(template.render())
+
+def checkout(request):
+  template = loader.get_template('checkout.html')
+  return HttpResponse(template.render())
+
+
+from django.http import JsonResponse
+import cv2
+from pyzbar.pyzbar import decode
+import time
+
+def scan_barcode(request):
+    if request.method == 'POST':
+        def scan_barcode(timeout=30):
+            # Barcode scanning logic
+            # ...
+            pass
+
+        barcode_data = scan_barcode(timeout=30)
+        if barcode_data:
+            return JsonResponse({'barcode': barcode_data})
+        else:
+            return JsonResponse({'error': 'Barcode not found within timeout period'})
+    else:
+        return JsonResponse({'error': 'Method not allowed'}, status=405)

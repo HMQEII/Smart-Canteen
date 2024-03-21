@@ -5,7 +5,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins' , sans-serif;
-
+    /* background-image: url('/backend/canteen/static/newbg.jpeg');
+    background-size: cover; */
 }
 
 .loading-screen {
@@ -37,6 +38,7 @@ body {
     
     min-height: 100vh;
     background: url('public/bg2mirror.gif') no-repeat;
+    /* background-image: url('/backend/canteen/static/newbg.jpeg'); */
     background-color: rgb(229, 240, 239);
     background-size: auto;
     background-position: right;
@@ -441,7 +443,7 @@ p{
 .banner{
     align-items: left;
     color: darkcyan;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     padding: 0;
     top:0;
     border-top: 3px solid black;
@@ -474,7 +476,7 @@ p{
 .hidden-iframe {
     display: none;
     width: 100%;
-    height: 500px; /* Set an appropriate height for your iframe */
+    height: 200px; /* Set an appropriate height for your iframe */
     border: none;
 }
 .qaframe{

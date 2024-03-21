@@ -9,7 +9,7 @@ def index():
 
 @app.route('/scan', methods=['POST'])
 def scan():
-    result = subprocess.run(['python', 'D:/Smart-Canteen-master/smart-canteen/backend/canteen/templates/try.py'], capture_output=True)
+    result = subprocess.run(['python', 'A:/Smart-Canteen-master/backend/canteen/try.py'], capture_output=True)
     barcode_data = result.stdout.decode('utf-8').strip()
     return barcode_data
 

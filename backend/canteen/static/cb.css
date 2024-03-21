@@ -1,16 +1,17 @@
-/* WhatsApp-like Chatbot CSS */
+
 #chat-container {
   font-family: 'Poppins', sans-serif; /* Update font-family to Poppins */
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
-  width: 350px;
+  width: auto;
   margin: auto;
+  /* height: ; */
   backdrop-filter: blur(10px); /* Apply blur effect */
 }
 
 #chat {
-  background-color: rgba(229, 221, 213, 0.5); /* Transparent background color */
+  background-color: rgb(229, 240, 239,0.5); /* Transparent background color */
   padding: 10px;
   height: 400px;
   overflow-y: scroll;
@@ -90,4 +91,35 @@
   margin-right: auto;
   margin-left: 5px;
   background-color: whitesmoke;
+}
+
+
+
+.chatbot-button {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  z-index: 1000; /* Ensure the button is above other content */
+  background-color: #162938; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* No border */
+  border-radius: 50%; /* Make it circular */
+  padding: 15px; /* Adjust padding as needed */
+  font-size: 30px; /* Adjust font size as needed */
+  cursor: pointer; /* Show pointer cursor on hover */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add shadow */
+  align-content: center;
+  width: fit-content;
+  height: 12%;
+}
+.chatbot-container {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 65vh; /* Adjust width as needed */
+  height: 85%; /* Adjust height as needed */
+  border: 1px solid #ccc;
+  background-color: transparent;
+  z-index: 1000;
 }

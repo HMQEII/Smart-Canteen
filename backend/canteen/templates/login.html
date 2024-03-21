@@ -103,7 +103,7 @@
                     var isAdminSelected = document.querySelector('.userselec .selected').innerText.trim() === 'Admin';
 
                     if (id == 211014 && pass == '211014' && isAdminSelected) {
-                        window.location.href = 'http://127.0.0.1:8000/home/';
+                        window.location.href = 'http://127.0.0.1:8000/Home/';
                     } else {
                         openPopup('Invalid credentials');
                     }
@@ -118,9 +118,16 @@
                         <input type="text" id="rusername">  
                         <label>Username</label>
                     </div>
+                    <!-- <div class="input-box">
+                        <span class="icon"></span>
+                        <input type="number" id="remail" oninput="limitInputLength(this, 6)">
+                        <button>Capture</button>  
+                        <label>PID</label>
+                    </div> -->
                     <div class="input-box">
                         <span class="icon"></span>
-                        <input type="number" id="remail" oninput="limitInputLength(this, 6)">  
+                        <input type="number" id="remail" oninput="limitInputLength(this, 6)">
+                        <button onclick="captureBarcode()">Capture</button>  
                         <label>PID</label>
                     </div>
                     <div class="input-box">
@@ -141,37 +148,26 @@
                     </div>
                 </form>
             </div>
-            <div class="form-box forgot-password">
-                <h2>Forgot Password</h2>
-                <form action="" id="forgot-password-form">
-                    <div class="input-box" >
-                        <span class="icon"></span>
-                        <input type="email" id="rusername">  
-                        <label>Email</label>
-                    </div>
-                    <!-- <div class="input-box">
-                        <span class="icon"></span>
-                        <input type="number" id="remail" oninput="limitInputLength(this, 6)">  
-                        <label>PID</label>
-                    </div> -->
-                    <div class="input-box">
-                        <span class="icon"></span>
-                        <input id="rpassword" type="password" required>  
-                         <label>OTP</label>
-                    </div>
-                    <!-- <div class="remember-forgot">
-                        <label>
-                            <input type="checkbox" required> <a class="tnc-popup">I agree to the terms and conditions</a>
-                        </label>
-                    </div> -->
-                    <button type="submit"  class="btn">Submit</button>
-                    <div class="remember-forgot"></div>
-                        <p>Remember Password ?
-                            <a href="#" class="login-link">Login</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
+            <script>
+                function captureBarcode() {
+    // Make AJAX request to Flask server
+    fetch('/scan_barcode', {
+        method: 'POST'  // Specify that this is a POST request
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Check if barcode data is received
+        if (data.barcode) {
+            // Update value of input field with barcode data
+            document.getElementById('remail').value = data.barcode;
+        } else {
+            alert('Barcode not found within timeout period');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+            </script>
             
         </div>
         </div>
