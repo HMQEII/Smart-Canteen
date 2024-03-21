@@ -6,9 +6,10 @@ from . import views
 urlpatterns = [
     path('', RedirectView.as_view(url='/Login/')),
     path('Home/', views.home, name='home'),
+    
     path('Login/', views.login, name='login'),
     path('Home/Veg/', views.Veg, name='veg'),
     path('Home/NonVeg/', views.NVeg, name='nveg'),
-    path('Login/Fpass/', views.Fpass, name='fpass'),
-    path('Home/Wallet/', views.Wallet, name='wallet'),
+    path('predicted-demand/', views.sales_prediction_view, name='predicted_demand'),
+    path('suggest_order/', views.suggest_order, name='suggest_order'),
 ]
