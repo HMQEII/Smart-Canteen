@@ -5,10 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Smart Canteen</title>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="popup.css">
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
         {% load static %}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'popup.css' %}">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
         <link rel="stylesheet" type="text/css" href="{% static 'HomeStyle.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'cb.css' %}">
         <link rel="icon" type="image/x-icon" href="https://drive.google.com/thumbnail?id=1sNawcZcmOmCP57CemNGRqmLvrOESuS0J">
@@ -149,6 +149,12 @@
                       <p class="card-text" ><center>Non-Veg</center></p>
                     </div>
                 </div>
+                <div class="card" style="width: fit-content;" onclick="addToSelectedListAndShowIframe('c3','Beverage')">
+                    <img src="https://drive.google.com/thumbnail?id=1SUuKIe8eLbX5o3CjpOTwtkLxjDZ6-d4J" class="card_img" alt="..." >
+                    <div class="card-body">
+                      <p class="card-text" ><center>Beverage</center></p>
+                    </div>    
+                </div>
             
             </div>
         </center>
@@ -159,10 +165,10 @@
         <div class="iframe-container" style="max-height: 58vh;">
             <iframe id="c1Iframe" class="hidden-iframe" src="http://127.0.0.1:8000/Home/Veg/"></iframe>
             <iframe id="c2Iframe" class="hidden-iframe" src="http://127.0.0.1:8000/Home/NonVeg/"></iframe>
-            <iframe id="c3Iframe" class="hidden-iframe" src="c3.html"></iframe>
-            <iframe id="c4Iframe" class="hidden-iframe" src="c4.html"></iframe>
+            <iframe id="c3Iframe" class="hidden-iframe" src="http://127.0.0.1:8000/Home/Beverage/"></iframe>
+            <!-- <iframe id="c4Iframe" class="hidden-iframe" src="c4.html"></iframe>
             <iframe id="c5Iframe" class="hidden-iframe" src="c5.html"></iframe>
-            <iframe id="c6Iframe" class="hidden-iframe" src="c6.html"></iframe>
+            <iframe id="c6Iframe" class="hidden-iframe" src="c6.html"></iframe> -->
         </div>             
      </div>
         <div class="section">
@@ -214,16 +220,55 @@
                     // Redirect to checkout.html
                     window.location.href = 'checkout.html';
                 }
+                // function addtocart() {
+                //     const userid = localStorage.getItem("username");
+                //     const shopName = document.getElementById('selecshop').textContent;
+                //     const itemName = document.getElementById('selecitem').textContent;
+                //     const Image = selectedImage;
+                //     const price = itemPrice;
+                //     alert(userid);
+                //     // alert(price);
+                //     // Store the details in local storage
+                //     // localStorage.setItem('localVariableDetails', JSON.stringify({ shopName, itemName, Image, price }));
+                //     const itemToAdd = {
+                //         userid,
+                //         shopName,
+                //         itemName,
+                //         Image,
+                //         price,
+                //     };
+
+                //     // Send a POST request to the server to add the item to the cart
+                //     fetch('/addtocart', {
+                //         method: 'POST',
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //         },
+                //         body: JSON.stringify(itemToAdd),
+                //     })
+                //     .then((response) => response.json())
+                //     .then((data) => {
+                //         if (data.success) {
+                //             openPopup("Item added to the cart.");
+                //         } else {
+                //             openPopup("Failed to add item to the cart.");
+                //         }
+                //     })
+                //     .catch((error) => {
+                //         console.error(error);
+                //         openPopup("Failed to add item to the cart.");
+                //     });
+                // }
+
                 function addtocart() {
+                    // alert('i was called')
                     const userid = localStorage.getItem("username");
                     const shopName = document.getElementById('selecshop').textContent;
                     const itemName = document.getElementById('selecitem').textContent;
                     const Image = selectedImage;
                     const price = itemPrice;
-                    alert(userid);
-                    // alert(price);
-                    // Store the details in local storage
-                    // localStorage.setItem('localVariableDetails', JSON.stringify({ shopName, itemName, Image, price }));
+                    // alert(userid);
+                    
                     const itemToAdd = {
                         userid,
                         shopName,
@@ -232,11 +277,11 @@
                         price,
                     };
 
-                    // Send a POST request to the server to add the item to the cart
-                    fetch('/addtocart', {
+                    fetch('/addtocart/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken'), // Include CSRF token for Django
                         },
                         body: JSON.stringify(itemToAdd),
                     })
@@ -253,6 +298,21 @@
                         openPopup("Failed to add item to the cart.");
                     });
                 }
+                function getCookie(name) {
+                    let cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                        const cookies = document.cookie.split(';');
+                        for (let i = 0; i < cookies.length; i++) {
+                            const cookie = cookies[i].trim();
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+
             </script>
             <style>
                 .d-flex label{

@@ -183,3 +183,8 @@ window.addEventListener('message', handleMessageforscroll);
 
 
 // Assuming you have the item details in variables
+
+
+
+
+

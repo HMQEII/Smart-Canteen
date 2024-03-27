@@ -19,7 +19,7 @@ import nltk
 import nltk
 nltk.download('averaged_perceptron_tagger')
 import random
-
+from django.http import JsonResponse
 
 from nltk.tokenize import word_tokenize
 from django.shortcuts import render
@@ -195,6 +195,10 @@ def checkout(request):
   template = loader.get_template('checkout.html')
   return HttpResponse(template.render())
 
+def Beverage(request):
+  template = loader.get_template('c3.html')
+  return HttpResponse(template.render())
+
 
 from django.http import JsonResponse
 import cv2
@@ -215,3 +219,18 @@ def scan_barcode(request):
             return JsonResponse({'error': 'Barcode not found within timeout period'})
     else:
         return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+
+
+
+
+def addtocart(request):
+    if request.method == 'POST':
+        # Process the data sent from the JavaScript function
+        # Add the item to the cart or perform any other necessary operations
+        # Example: Save the item to the database
+        
+        # Return a JSON response indicating success or failure
+        return JsonResponse({'success': True})  # Change success value based on your logic
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
