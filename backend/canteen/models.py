@@ -36,3 +36,27 @@ class Wallet(models.Model):
         self.balance -= amount
         self.save()
 
+from django.db import models, connection
+
+class CartItem(models.Model):
+    id = models.AutoField(primary_key=True)
+    userid = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
+    Itemname = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='images/')
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.Itemname  # Customize the display of the object in admin panel if needed
+
+# Run a raw SQL query to create the table without a primary key
+with connection.cursor() as cursor:
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS canteen_cartitem (
+            userid VARCHAR(100),
+            category VARCHAR(100),
+            Itemname VARCHAR(100),
+            image VARCHAR(255),
+            price DECIMAL(10, 2)
+        )
+    """)

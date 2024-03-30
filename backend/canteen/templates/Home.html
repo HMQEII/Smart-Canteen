@@ -261,57 +261,46 @@
                 // }
 
                 function addtocart() {
-                    // alert('i was called')
-                    const userid = localStorage.getItem("username");
-                    const shopName = document.getElementById('selecshop').textContent;
-                    const itemName = document.getElementById('selecitem').textContent;
-                    const Image = selectedImage;
-                    const price = itemPrice;
-                    // alert(userid);
-                    
-                    const itemToAdd = {
-                        userid,
-                        shopName,
-                        itemName,
-                        Image,
-                        price,
-                    };
 
-                    fetch('/addtocart/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': getCookie('csrftoken'), // Include CSRF token for Django
-                        },
-                        body: JSON.stringify(itemToAdd),
-                    })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data.success) {
-                            openPopup("Item added to the cart.");
-                        } else {
-                            openPopup("Failed to add item to the cart.");
-                        }
-                    })
-                    .catch((error) => {
-                        console.error(error);
+                // const userid = localStorage.getItem("username");
+                const userid = 211014;
+                const shopName = document.getElementById('selecshop').textContent;
+                const itemName = document.getElementById('selecitem').textContent;
+                const Image = selectedImage; // Assuming this variable is defined elsewhere
+                const price = itemPrice; // Assuming this variable is defined elsewhere
+
+                const itemToAdd = {
+                    userid: userid,
+                    shopName: shopName,
+                    itemName: itemName,
+                    Image: Image,
+                    price: price,
+                };
+
+                fetch('/addtocart/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(itemToAdd),
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("Data received:", data); // Verify data
+                    if (data.success) {
+                        openPopup("Item added to the cart.");
+                    } else {
                         openPopup("Failed to add item to the cart.");
-                    });
-                }
-                function getCookie(name) {
-                    let cookieValue = null;
-                    if (document.cookie && document.cookie !== '') {
-                        const cookies = document.cookie.split(';');
-                        for (let i = 0; i < cookies.length; i++) {
-                            const cookie = cookies[i].trim();
-                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                break;
-                            }
-                        }
                     }
-                    return cookieValue;
-                }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    openPopup("Failed to add item to the cart.");
+                });
+            }
+
 
             </script>
             <style>
@@ -351,7 +340,6 @@
 
        <footer class="footer">
         <div class="navigation-foot">
-            
             <div class="row">
                 <div class="footer-col">
                     <h4>Get Help</h4>

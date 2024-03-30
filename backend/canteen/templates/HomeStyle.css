@@ -35,10 +35,8 @@
 body {
     display: flex;
     justify-content: center;
-    
     min-height: 100vh;
-    background: url('public/bg2mirror.gif') no-repeat;
-    /* background-image: url('/backend/canteen/static/newbg.jpeg'); */
+    background-image: url('http://127.0.0.1:8000/static/bg2mirror.gif') no-repeat;
     background-color: rgb(229, 240, 239);
     background-size: auto;
     background-position: right;

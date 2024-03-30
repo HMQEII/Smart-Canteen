@@ -100,12 +100,13 @@ header {
     left: 0;
     width: 100%;
     background: #6499E9;
+    /* background: transparent; */
     padding: 10px 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 99;
-    /* backdrop-filter: blur(50px); */
+    backdrop-filter: blur(100px);
 }
 
 .logo{

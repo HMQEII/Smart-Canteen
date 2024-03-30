@@ -222,15 +222,31 @@ def scan_barcode(request):
 
 
 
+from django.http import JsonResponse
+from .models import CartItem
+import json
+from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def addtocart(request):
     if request.method == 'POST':
-        # Process the data sent from the JavaScript function
-        # Add the item to the cart or perform any other necessary operations
-        # Example: Save the item to the database
+        data = json.loads(request.body)
+        userid = data['userid']
+        category = data['shopName']
+        itemName = data['itemName']
+        Image = data['Image']
+        price = data['price']
+        print('views was called')
         
-        # Return a JSON response indicating success or failure
-        return JsonResponse({'success': True})  # Change success value based on your logic
+        # Save data to the database
+        cart_item = CartItem.objects.create(
+            userid=userid,
+            category=category,
+            Itemname=itemName,
+            image=Image,
+            price=price
+        )
+        
+        return JsonResponse({'success': True})
     else:
-        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+        return JsonResponse({'success': False})
