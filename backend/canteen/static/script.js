@@ -111,3 +111,4 @@ searchBox.addEventListener('keypress', function(event) {
     window.open(searchUrl, '_blank');
   }
 });
+

@@ -17,6 +17,7 @@ urlpatterns = [
     path('Home/', views.home, name='home'),
     path('Wallet/', views.Wallet, name='wallet'),
     path('Login/', views.login, name='login'),
+    path('login/', views.login, name='login'),
     path('Home/Veg/', views.Veg, name='veg'),
     path('Home/NonVeg/', views.NVeg, name='nveg'),
     path('Home/checkout.html', views.checkout, name='checkout'),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('predicted-demand/', views.sales_prediction_view, name='predicted_demand'),
     path('suggest_order/', views.suggest_order, name='suggest_order'),
     path('checkout/', views.checkout, name='checkout'),
-    # path('addtocart/', views.addtocart, name='addtocart'),
+    path('scan_barcode/', views.start_scan, name='scan_barcode'),
     path('addtocart/', views.addtocart, name='addtocart'),
+    path('register/', views.register, name='register'),
 ]

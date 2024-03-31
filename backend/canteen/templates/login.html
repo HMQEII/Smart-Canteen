@@ -60,7 +60,8 @@
             <div class="form-box login">
                 <br>
                 <h2>Login</h2>
-                <form action="" id="login-form">
+                <form action="" method="POST" id="login-form">
+                    {% csrf_token %}
                     <div class="userselec">
                       
                         <button class="uselec  selected" style="margin-left: 30px;" onclick="selectUser(this)"><ion-icon name="accessibility"></ion-icon>Customer</button>
@@ -85,7 +86,7 @@
                         </p>
                     </div>
                     
-                    <button class="btn" onclick="homepage()">Submit</button>
+                    <button class="btn" type="submit">Submit</button>
                     <div class="login-register">
                         <p>Don't have an account?
                             <a href="#" class="register-link">Register</a>
@@ -94,45 +95,78 @@
                 </form>
             </div>
             <script>
-                
-                
-                function homepage() 
-                {
-                    var id = document.getElementById('email').value;
-                    var pass = document.getElementById('password').value;
-                    var isAdminSelected = document.querySelector('.userselec .selected').innerText.trim() === 'Admin';
+                document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('login-form');
 
-                    if (id == 211014 && pass == '211014' && isAdminSelected) {
-                        window.location.href = 'http://127.0.0.1:8000/Home/';
-                    } else {
-                        openPopup('Invalid credentials');
-                    }
-                }
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+
+                    fetch('/login/', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw new Error('Network response was not ok.');
+                    })
+                    .then(data => {
+                        console.log("Data received:", data); // Log the data to console
+                        if (data.success) {
+                            localStorage.setItem("username", data.username);
+                            alert(data.username);
+                            openPopup("User logged in successfully");
+                            setTimeout(() => {
+                                window.location.href = '/Home/'; // Redirect to Home page
+                            }, 2000); // Redirect after 2 seconds (adjust as needed)
+                        } else {
+                            openPopup(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There was an error!', error);
+                        openPopup("Failed to login");
+                    });
+
+                    // Optionally, clear the form fields after submission
+                    form.reset();
+                });
+            });
+                
+                // function homepage() 
+                // {
+                //     var id = document.getElementById('email').value;
+                //     var pass = document.getElementById('password').value;
+                //     var isAdminSelected = document.querySelector('.userselec .selected').innerText.trim() === 'Admin';
+
+                //     if (id == 211014 && pass == '211014' && isAdminSelected) {
+                //         window.location.href = 'http://127.0.0.1:8000/Home/';
+                //     } else {
+                //         openPopup('Invalid credentials');
+                //     }
+                // }
 
             </script>
             <div class="form-box register">
                 <h2>Registration</h2>
-                <form action="" id="registration-form">
+                <form action="" method="post" id="registration-form">
+                    {% csrf_token %}
                     <div class="input-box" >
                         <span class="icon"></span>
-                        <input type="text" id="rusername">  
+                        <input type="text" id="rusername" name="rusername">  
                         <label>Username</label>
                     </div>
-                    <!-- <div class="input-box">
-                        <span class="icon"></span>
-                        <input type="number" id="remail" oninput="limitInputLength(this, 6)">
-                        <button>Capture</button>  
-                        <label>PID</label>
-                    </div> -->
                     <div class="input-box">
                         <span class="icon"></span>
-                        <input type="number" id="remail" oninput="limitInputLength(this, 6)">
-                        <button onclick="captureBarcode()">Capture</button>  
+                        <input type="number" id="remail" name="remail" oninput="limitInputLength(this, 6)">  
                         <label>PID</label>
+                        <button id="capture-button">Capture Barcode</button>
                     </div>
                     <div class="input-box">
                         <span class="icon"></span>
-                        <input id="rpassword" type="password" required>  
+                        <input id="rpassword" name="rpassword" type="password" required>  
                          <label>Password</label>
                     </div>
                     <div class="remember-forgot">
@@ -141,6 +175,7 @@
                         </label>
                     </div>
                     <button type="submit"  class="btn">Submit</button>
+                    <!-- <div id="registration-message"></div> -->
                     <div class="login-register">
                         <p>Already have an account?
                             <a href="#" class="login-link">Login</a>
@@ -149,23 +184,84 @@
                 </form>
             </div>
             <script>
-                function captureBarcode() {
-    // Make AJAX request to Flask server
-    fetch('/scan_barcode', {
-        method: 'POST'  // Specify that this is a POST request
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Check if barcode data is received
-        if (data.barcode) {
-            // Update value of input field with barcode data
-            document.getElementById('remail').value = data.barcode;
-        } else {
-            alert('Barcode not found within timeout period');
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
+                document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('registration-form');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+
+        fetch('/register/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            console.log("Data received:", data); // Log the data to console
+            if (data.message === 'User registered successfully') {
+                openPopup(data.message);
+                setTimeout(() => {
+                    window.location.reload(); // Reload the page after showing the popup
+                }, 2000); // Reload after 2 seconds (adjust as needed)
+            } else {
+                openPopup(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('There was an error!', error);
+            openPopup(data.message);
+        });
+
+        // Optionally, clear the form fields after submission
+        form.reset();
+    });
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const captureButton = document.getElementById('capture-button');
+    const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+    captureButton.addEventListener('click', function () {
+        fetch('/scan_barcode/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken  // Include the CSRF token in the request headers
+            },
+            body: JSON.stringify({})  // Send an empty JSON object in the request body
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            console.log("Data received:", data); // Log the data to console
+            if (data.barcode) {
+                // Assuming you have an input field with ID "remail", set its value to the scanned barcode
+                document.getElementById('remail').value = data.barcode;
+            } else {
+                console.error('Barcode not found within timeout period');
+                // Handle the case where barcode is not found within timeout period
+            }
+        })
+        .catch(error => {
+            console.error('There was an error!', error);
+            // Handle the error
+        });
+    });
+});
+
+
 
             </script>
             

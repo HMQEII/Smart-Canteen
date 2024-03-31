@@ -24,6 +24,42 @@ from django.http import JsonResponse
 from nltk.tokenize import word_tokenize
 from django.shortcuts import render
 from django.http import JsonResponse
+import cv2
+from pyzbar.pyzbar import decode
+import time
+
+def scan_barcode(request):
+    print('Initialising Camera')
+    cap = cv2.VideoCapture(0)
+    cv2.namedWindow('Camera Feed', cv2.WINDOW_NORMAL)
+    start_time = time.time()
+    while True:
+        ret, frame = cap.read()
+        if ret:
+            cv2.imshow('Camera Feed', frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            decoded_objects = decode(gray)
+            if decoded_objects:
+                barcode_data = decoded_objects[0].data.decode('utf-8')
+                cv2.destroyAllWindows()
+                cap.release()  # Release the camera
+                return barcode_data
+        if time.time() - start_time > timeout:
+            print('Timeout: Unable to read barcode')
+            cv2.destroyAllWindows()
+            cap.release()  # Release the camera
+            return None
+
+
+def start_scan(request):
+    barcode_data = scan_barcode(request)
+    if barcode_data:
+        return JsonResponse({'barcode': barcode_data})
+    else:
+        return JsonResponse({'error': 'Barcode not found within timeout period'})
+
 
 # Download NLTK resources (run once)
 nltk.download('punkt')
@@ -154,29 +190,54 @@ def login(request):
             # If a user is found, check if the password matches
             if user.password == password:
                 # Authentication successful
-                return HttpResponse('Login successful')
+                # return JsonResponse({'success': True, 'message': 'Login Successful'})
+                return JsonResponse({'success': True, 'username': user.username, 'message': 'Login Successful'})
             else:
                 # Password doesn't match
-                return HttpResponse('Invalid credentials')
+                return JsonResponse({'success': False, 'message': 'Invalid Credentials'})
         except Customer.DoesNotExist:
             # User with the given PID doesn't exist
-            return HttpResponse('Invalid credentials')
+            return JsonResponse({'success': False, 'message': 'Invalid Credentials'})
     else:
         return render(request, 'login.html')
-def login(request):
-   if request.method == 'POST':
+    
+# def login(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('rusername')
+#         pid = request.POST.get('remail')
+#         password = request.POST.get('rpassword')
+#         print("Username:", username)
+#         print("PID:", pid)
+#         print("Password:", password)
+#         # Create and save the user object
+#         user = Customer(pid=pid, username=username, password=password)
+#         user.save()
+
+#         # Return a JsonResponse indicating success
+#         return JsonResponse({'message': 'User registered successfully'})
+#     else:
+#         return render(request, 'login.html')
+from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Customer
+
+def register(request):
+    if request.method == 'POST':
         username = request.POST.get('rusername')
         pid = request.POST.get('remail')
         password = request.POST.get('rpassword')
         print("Username:", username)
         print("PID:", pid)
         print("Password:", password)
-        # Create and save the user object
-        user = Customer( pid=pid,username=username, password=password)
-        user.save()
         
-        return HttpResponse('User registered successfully')
-   else:
+        # Check if user with provided PID already exists
+        if Customer.objects.filter(pid=pid).exists():
+            return JsonResponse({'success': False, 'message': 'User already exists. Kindly login.'})
+        
+        # Create and save the user object
+        user = Customer.objects.create(pid=pid, username=username, password=password)
+        return JsonResponse({'success': True, 'message': 'User registered successfully'})
+    else:
         return render(request, 'login.html')
 
 def Veg(request):

@@ -65,9 +65,9 @@ def scan_barcode(timeout=30):
             cap.release()  # Release the camera
             return None
 
-@app.route('/')
-def index():
-    return render_template('try2.html')
+# @app.route('/')
+# def index():
+#     return render_template('try2.html')
 
 @app.route('/scan_barcode')
 def start_scan():
