@@ -191,7 +191,7 @@ def login(request):
             if user.password == password:
                 # Authentication successful
                 # return JsonResponse({'success': True, 'message': 'Login Successful'})
-                return JsonResponse({'success': True, 'username': user.username, 'message': 'Login Successful'})
+                return JsonResponse({'success': True, 'username': user.username, 'pid': user.pid, 'message': 'Login Successful'})
             else:
                 # Password doesn't match
                 return JsonResponse({'success': False, 'message': 'Invalid Credentials'})
@@ -292,22 +292,49 @@ from django.views.decorators.csrf import csrf_exempt
 def addtocart(request):
     if request.method == 'POST':
         data = json.loads(request.body)
+        # id = data['id']
         userid = data['userid']
         category = data['shopName']
         itemName = data['itemName']
         Image = data['Image']
         price = data['price']
-        print('views was called')
+        
+        # print('views was called')
         
         # Save data to the database
         cart_item = CartItem.objects.create(
+            # id=id,
             userid=userid,
             category=category,
             Itemname=itemName,
             image=Image,
             price=price
+
         )
         
         return JsonResponse({'success': True})
     else:
         return JsonResponse({'success': False})
+
+
+def get_cart_items(request):
+    pid = request.GET.get('pid')
+    # Retrieve cart items based on the provided PID
+    cart_items = CartItem.objects.filter(userid=pid).values()
+    return JsonResponse(list(cart_items), safe=False)
+
+@csrf_exempt
+def delete_cart_item(request, pid, item_name):
+    if request.method == 'DELETE':
+        try:
+            # Search for the cart item based on PID and item name
+            cart_item = CartItem.objects.get(userid=pid, Itemname=item_name)
+            cart_item.delete()
+            return JsonResponse({'success': True})
+        except CartItem.DoesNotExist:
+                return JsonResponse({'success': False, 'message': 'Cart item does not exist'}, status=404)
+        except Exception as e:
+                print(e)  # Log the error message
+                return JsonResponse({'success': False, 'message': 'Internal Server Error'}, status=500)
+    else:
+        return JsonResponse({'success': False, 'message': 'Method not allowed'}, status=405)

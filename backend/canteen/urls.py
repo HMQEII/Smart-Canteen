@@ -28,4 +28,6 @@ urlpatterns = [
     path('scan_barcode/', views.start_scan, name='scan_barcode'),
     path('addtocart/', views.addtocart, name='addtocart'),
     path('register/', views.register, name='register'),
+    path('getCartItems/', views.get_cart_items, name='get_cart_items'),
+    path('deleteCartItem/<int:pid>/<str:item_name>/', views.delete_cart_item, name='delete_cart_item'),
 ]

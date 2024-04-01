@@ -96,44 +96,44 @@
             </div>
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                const form = document.getElementById('login-form');
+                    const form = document.getElementById('login-form');
 
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    const formData = new FormData(form);
+                    form.addEventListener('submit', function (event) {
+                        event.preventDefault();
+                        const formData = new FormData(form);
 
-                    fetch('/login/', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            return response.json();
-                        }
-                        throw new Error('Network response was not ok.');
-                    })
-                    .then(data => {
-                        console.log("Data received:", data); // Log the data to console
-                        if (data.success) {
-                            localStorage.setItem("username", data.username);
-                            alert(data.username);
-                            openPopup("User logged in successfully");
-                            setTimeout(() => {
-                                window.location.href = '/Home/'; // Redirect to Home page
-                            }, 2000); // Redirect after 2 seconds (adjust as needed)
-                        } else {
-                            openPopup(data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('There was an error!', error);
-                        openPopup("Failed to login");
+                        fetch('/login/', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            }
+                            throw new Error('Network response was not ok.');
+                        })
+                        .then(data => {
+                            console.log("Data received:", data); // Log the data to console
+                            if (data.success) {
+                                localStorage.setItem("username", data.username);
+                                localStorage.setItem("pid", data.pid);
+                                openPopup("User logged in successfully");
+                                setTimeout(() => {
+                                    window.location.href = '/Home/'; // Redirect to Home page
+                                }, 1000); // Redirect after 1 sec
+                            } else {
+                                openPopup(data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('There was an error!', error);
+                            openPopup("Failed to login");
+                        });
+
+                        // Optionally, clear the form fields after submission
+                        form.reset();
                     });
-
-                    // Optionally, clear the form fields after submission
-                    form.reset();
                 });
-            });
                 
                 // function homepage() 
                 // {
@@ -348,17 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
        </footer>
        
-
-        <!-- </script>
-        <script type="module">
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
-
-        const firestore = getFirestore(app); // 'app' is the Firebase app you initialized earlier
-        </script> -->
-        <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"></script>
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
         <script src="{% static 'script.js' %}"></script>
         <script  src="{% static 'authentication.js' %}"></script>
 
