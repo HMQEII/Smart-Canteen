@@ -20,6 +20,7 @@ import nltk
 nltk.download('averaged_perceptron_tagger')
 import random
 from django.http import JsonResponse
+import razorpay
 
 from nltk.tokenize import word_tokenize
 from django.shortcuts import render
@@ -252,9 +253,7 @@ def Wallet(request):
   template = loader.get_template('Wallet.html')
   return HttpResponse(template.render())
 
-def checkout(request):
-  template = loader.get_template('checkout.html')
-  return HttpResponse(template.render())
+
 
 def Beverage(request):
   template = loader.get_template('c3.html')
@@ -338,3 +337,78 @@ def delete_cart_item(request, pid, item_name):
                 return JsonResponse({'success': False, 'message': 'Internal Server Error'}, status=500)
     else:
         return JsonResponse({'success': False, 'message': 'Method not allowed'}, status=405)
+    
+
+from backend.settings import RAZORPAY_API_KEY,RAZORPAY_API_SECRET_KEY
+
+# def checkout(request):
+#     template = loader.get_template('checkout.html')
+#     # return HttpResponse(template.render())
+#     client = razorpay.Client(auth=(RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY))
+
+#     DATA = {
+#         "amount": 850,
+#         "currency": "INR",
+#         "payment_capture":"1",
+#     }
+#     payment_order = client.order.create(data=DATA)
+#     payment_order_id = payment_order['id']
+#     context = {
+#         'api_key':RAZORPAY_API_KEY, 'order_id': payment_order_id,
+#     }
+#     return render(request, 'checkout.html', context)
+
+
+import razorpay
+from django.shortcuts import render
+from .models import Customer
+
+from backend.settings import RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY
+
+def checkout(request):
+    template = loader.get_template('checkout.html')
+    return HttpResponse(template.render())
+
+from django.http import JsonResponse
+
+from django.http import JsonResponse
+import json
+
+def process_payment(request):
+    client = razorpay.Client(auth=(RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY))
+
+    # Extract the amount from the request body
+    data = json.loads(request.body)
+    amount = data.get('amount')
+
+    # Validate the amount (you may need to add additional validation logic here)
+    if not amount:
+        return JsonResponse({'error': 'Amount is required'}, status=400)
+
+    # Convert the amount to the required format (assuming it's in paisa)
+    amount_in_paisa = int(amount) * 100  # Assuming the amount is in rupees, convert it to paisa
+
+    # Create the payment order with the extracted amount
+    DATA = {
+        "amount": amount_in_paisa,
+        "currency": "INR",
+        "payment_capture": "1",
+    }
+    payment_order = client.order.create(data=DATA)
+    payment_order_id = payment_order['id']
+
+    # Return the required data as a JSON response
+    return JsonResponse({
+        'api_key': RAZORPAY_API_KEY,
+        'order_id': payment_order_id,
+    })
+
+
+
+
+
+
+
+
+
+    

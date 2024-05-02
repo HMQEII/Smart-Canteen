@@ -25,6 +25,7 @@ urlpatterns = [
     path('predicted-demand/', views.sales_prediction_view, name='predicted_demand'),
     path('suggest_order/', views.suggest_order, name='suggest_order'),
     path('checkout/', views.checkout, name='checkout'),
+    path('process_payment/', views.process_payment, name='process_payment'),
     path('scan_barcode/', views.start_scan, name='scan_barcode'),
     path('addtocart/', views.addtocart, name='addtocart'),
     path('register/', views.register, name='register'),
