@@ -14,7 +14,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/Login/')),
-    path('Home/', views.home, name='home'),
+    path('Home/', views.sales_prediction_view, name='home'),
     path('Wallet/', views.Wallet, name='wallet'),
     path('Login/', views.login, name='login'),
     path('login/', views.login, name='login'),
@@ -31,4 +31,5 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('getCartItems/', views.get_cart_items, name='get_cart_items'),
     path('deleteCartItem/<int:pid>/<str:item_name>/', views.delete_cart_item, name='delete_cart_item'),
+    path('delete_cart_aftersuccess/', views.delete_cart_aftersuccess, name='delete_cart_aftersuccess'),
 ]

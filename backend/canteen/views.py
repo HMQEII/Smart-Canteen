@@ -75,26 +75,192 @@ def process_mood(mood):
     tokens = word_tokenize(mood)
     emotions = nltk.pos_tag(tokens)
 
-    happy_words = ["happy", "joy", "excited", "content", "pleased"]
-    sad_words = ["sad", "depressed", "unhappy", "upset", "gloomy"]
+    # Happy mood
+    happy_words = ["happy", "joy", "excited", "content", "pleased",
+                "delighted", "elated", "jubilant", "thrilled", "ecstatic",
+                "radiant", "cheerful", "exuberant", "blissful", "satisfied"]
+
+    # Sad mood
+    sad_words = ["sad", "depressed", "gloomy", "miserable", "despondent",
+                "sorrowful", "melancholy", "despairing", "woeful", "dismal",
+                "downcast", "heartbroken", "dejected"]
+
+    # Upset mood
+    upset_words = ['unhappy', 'upset', 'distressed', 'disheartened', 'agitated',
+                'disturbed', 'perturbed', 'discontent', 'frustrated', 'irritated',
+                'annoyed', 'dismayed']
+
+    # Relaxed mood
+    relaxed_words = ["calm", "serene", "peaceful", "tranquil", "soothing",
+                    "unwind", "laid-back", "easygoing", "placid", "mellow"]
+
+    # Energetic mood
+    energetic_words = ["dynamic", "vibrant", "enthusiastic", "lively", "spirited",
+                    "animated", "zealous", "buoyant", "bubbly", "high-spirited"]
+
+    # Anxious mood
+    anxious_words = ["worried", "nervous", "tense", "apprehensive", "uneasy",
+                    "agitated", "restless", "jittery", "panicked", "distressed"]
+
+    # Optimistic mood
+    optimistic_words = ["hopeful", "positive", "confident", "upbeat", "expectant",
+                        "bright", "cheery", "sunny", "encouraged", "buoyant"]
+
+    # Pensive mood
+    pensive_words = ["thoughtful", "reflective", "contemplative", "meditative",
+                    "introspective", "brooding", "philosophical", "dreamy",
+                    "wistful", "absorbed"]
+
+    # Festive mood
+    festive_words = ["celebratory", "festive", "merry", "jovial", "festive",
+                    "joyful", "gleeful", "reveling", "festal", "rejoicing"]
+
+    # Grateful mood
+    grateful_words = ["thankful", "appreciative", "grateful", "acknowledging",
+                    "indebted", "recognizing", "gracious", "obliged", "beholden",
+                    "graceful"]
+
+    # Creative mood
+    creative_words = ["imaginative", "creative", "inspired", "innovative", "artistic",
+                    "visionary", "inventive", "expressive", "imagery", "resourceful"]
+
 
     happy_food_items = ["pizza", "burger", "frankie", "hotdog", "manchurian", "cutlet", "pakoda", "spring roll", "dabeli", "sev puri", "chapati", "chole bhature", "biryani", "aubergine dish", "fried rice", "noodles", "burger", "hotdogs", "spring rolls", "biryani", "gravy", "fried rice", "noodles"]
     sad_food_items = ["soup", "salad", "smoothie", "cold coffee", "mixed fruit juice", "coffee", "tea", "frooti", "slice", "milkshake"]
+    upset_food_items = ['smoothie','coffee','frooti','milkshake']
+    # Relaxed mood food items
+    relaxed_food_items = ["pizza", "burger", "frankie", "hotdog", "manchurian", "cutlet",
+                        "pakoda", "spring roll", "dabeli", "sev puri", "chapati",
+                        "chole bhature", "biryani", "aubergine dish", "fried rice",
+                        "noodles", "gravy"]
 
+    # Energetic mood food items
+    energetic_food_items = ["pizza", "burger", "frankie", "hotdog", "manchurian", "cutlet",
+                            "pakoda", "spring roll", "dabeli", "sev puri", "chapati",
+                            "chole bhature", "biryani", "aubergine dish", "fried rice",
+                            "noodles", "gravy"]
+
+    # Anxious mood food items
+    anxious_food_items = ["soup", "salad", "smoothie", "cold coffee", "mixed fruit juice",
+                        "coffee", "tea", "frooti", "slice", "milkshake"]
+
+    # Optimistic mood food items
+    optimistic_food_items = ["soup", "salad", "smoothie", "cold coffee", "mixed fruit juice",
+                            "coffee", "tea", "frooti", "slice", "milkshake"]
+
+    # Pensive mood food items
+    pensive_food_items = ["soup", "salad", "smoothie", "cold coffee", "mixed fruit juice",
+                        "coffee", "tea", "frooti", "slice", "milkshake"]
+
+    # Festive mood food items
+    festive_food_items = ["pizza", "burger", "frankie", "hotdog", "manchurian", "cutlet",
+                        "pakoda", "spring roll", "dabeli", "sev puri", "chapati",
+                        "chole bhature", "biryani", "aubergine dish", "fried rice",
+                        "noodles", "gravy"]
+
+    # Grateful mood food items
+    grateful_food_items = ["soup", "salad", "smoothie", "cold coffee", "mixed fruit juice",
+                        "coffee", "tea", "frooti", "slice", "milkshake"]
+
+    # Creative mood food items
+    creative_food_items = ["soup", "salad", "smoothie", "cold coffee", "mixed fruit juice",
+                        "coffee", "tea", "frooti", "slice", "milkshake"]
+
+    veg = ["pizza", "burger", "frankie", "hotdog", "manchurian", "cutlet", "pakoda", "spring roll", "dabeli", "sev puri", "chapati", "chole bhature"]
+    nonveg = ["biryani", "gravy", "fried rice", "noodles",'Chicken Curry','Egg masala']
+    beverages = ['smoothie','coffee','frooti','milkshake',"cold coffee", "mixed fruit juice","tea",]
     for word, tag in emotions:
         if word.lower() in happy_words:
-            suggested_order = "Since you're feeling happy, how about trying " + random.choice(happy_food_items) + "?"
-            return suggested_order
+            ch = random.choice(happy_food_items)
+            if ch in beverages:    
+                suggested_order = "Since you're feeling "+word+", how about trying " + ch + ",? \n\n You may find it under the Beverages Section."
+                return suggested_order
+            elif ch in veg:    
+                suggested_order = "Since you're feeling "+word+", how about trying " + ch + ",? \n\n You may find it under the Veg Section."
+                return suggested_order
+            elif ch in nonveg:    
+                suggested_order = "Since you're feeling "+word+", how about trying " + ch + ",? \n\n You may find it under the Non Veg Section."
+                return suggested_order
+            
         elif word.lower() in sad_words:
-            suggested_order = "If you're feeling sad, maybe " + random.choice(sad_food_items) + " could lift your spirits."
-            return suggested_order
+            ch = random.choice(sad_food_items)
+            if ch in beverages:    
+                suggested_order = "If you're feeling "+word+", maybe " + ch + ", could lift your spirits. \n\n You may find it under the Beverages Section."
+                return suggested_order
+            elif ch in veg:
+                suggested_order = "If you're feeling "+word+", maybe " + ch + ", could lift your spirits. \n\n You may find it under the Veg Section."
+                return suggested_order
+            elif ch in nonveg:
+                suggested_order = "If you're feeling "+word+", maybe " + ch + ", could lift your spirits. \n\n You may find it under the Non Veg Section."
+                return suggested_order
+            
+        elif word.lower() in upset_words:
+            ch = random.choice(upset_food_items)
+            if ch in beverages:    
+                suggested_order = "Hmm, Since you're feeling "+word+", how about a " + ch + ", could help you cheerup a bit. \n\n You may find it under the Beverages Section."
+                return suggested_order
+            elif ch in veg:    
+                suggested_order = "Hmm, Since you're feeling "+word+", how about a " + ch + ", could help you cheerup a bit. \n\n You may find it under the Veg Section."
+                return suggested_order
+            elif ch in nonveg:    
+                suggested_order = "Hmm, Since you're feeling "+word+", how about a " + ch + ", could help you cheerup a bit. \n\n You may find it under the Non Veg Section."
+                return suggested_order
+            
+        elif word.lower() in relaxed_words:
+            ch = random.choice(relaxed_food_items)
+            if ch in beverages:
+                suggested_order = "Feeling relaxed? How about enjoying " + ch + ",? \n\n You may find it under the Beverages Section."
+                return suggested_order
+            elif ch in veg:
+                suggested_order = "Feeling relaxed? How about enjoying " + ch + ",? \n\n You may find it under the Veg Section."
+                return suggested_order
+            elif ch in nonveg:
+                suggested_order = "Feeling relaxed? How about enjoying " + ch + ",? \n\n You may find it under the Non Veg Section."
+                return suggested_order
+            
+        elif word.lower() in energetic_words:
+            ch = random.choice(energetic_food_items)
+            if ch in beverages:
+                suggested_order = "Feeling energetic? How about grabbing " + ch + ",? \n\n You may find it under the Beverages Section."
+                return suggested_order
+            elif ch in veg:
+                suggested_order = "Feeling energetic? How about grabbing " + ch + ",? \n\n You may find it under the Veg Section."
+                return suggested_order
+            elif ch in nonveg:
+                suggested_order = "Feeling energetic? How about grabbing " + ch + ",? \n\n You may find it under the Non Veg Section."
+                return suggested_order
+            
+        elif word.lower() in anxious_words:
+            ch = random.choice(anxious_food_items)
+            if ch in beverages:
+                suggested_order = "Feeling anxious? Maybe " + ch + ", could help calm your nerves. \n\n You may find it under the Beverages Section."
+                return suggested_order
+            elif ch in veg:
+                suggested_order = "Feeling anxious? Maybe " + ch + ", could help calm your nerves. \n\n You may find it under the Veg Section."
+                return suggested_order
+            elif ch in nonveg:
+                suggested_order = "Feeling anxious? Maybe " + ch + ", could help calm your nerves. \n\n You may find it under the Non Veg Section."
+                return suggested_order
+            
+        elif word.lower() in optimistic_words:
+            ch = random.choice(optimistic_food_items)
+            if ch in beverages:
+                suggested_order = "Feeling optimistic? How about indulging in " + ch + ",? \n\n You may find it under the Beverages Section."
+                return suggested_order
+            elif ch in veg:
+                suggested_order = "Feeling optimistic? How about indulging in " + ch + ",? \n\n You may find it under the Veg Section."
+                return suggested_order
+            elif ch in nonveg:
+                suggested_order = "Feeling optimistic? How about indulging in " + ch + ",? \n\n You may find it under the Non Veg Section."
+                return suggested_order
+            
 
     suggested_order = "Sorry, I couldn't understand your mood. Can you please specify if you're feeling happy or sad?"
     return suggested_order
 
 def sales_prediction_view(request):
     # Read DataFrame from CSV file
-    df = pd.read_csv('C:/Users/pdv50/Downloads/MP_B15_train_data - Sheet1.csv') # Replace 'your_dataset.csv' with your actual file path
+    df = pd.read_csv('A:/Smart-Canteen-master/backend/canteen/static/MP_B15_train_data - Sheet1.csv') # Replace 'your_dataset.csv' with your actual file path
 
     # One-hot encoding categorical variables
     df_encoded = pd.get_dummies(df, columns=['time_of_day', 'day_of_week', 'weather', 'food_item'])
@@ -172,12 +338,14 @@ def sales_prediction_view(request):
     plt.close()
 
     # Render the template with the plot
-    return render(request, 'prediction.html', {'plot_data_uri': plot_data_uri})
+    return render(request, 'Home.html', {'plot_data_uri': plot_data_uri})
 
 
-def home(request):
-  template = loader.get_template('home.html')
-  return HttpResponse(template.render())
+# def home(request):
+#   template = loader.get_template('home.html')
+#   return HttpResponse(template.render())
+
+
 def login(request):
     if request.method == 'POST':
         pid = request.POST.get('email')  # Assuming PID is entered in the 'email' field
@@ -381,7 +549,7 @@ def process_payment(request):
     data = json.loads(request.body)
     amount = data.get('amount')
 
-    # Validate the amount (you may need to add additional validation logic here)
+    # Validate the amount (you may need to add additional validation logic here
     if not amount:
         return JsonResponse({'error': 'Amount is required'}, status=400)
 
@@ -401,8 +569,39 @@ def process_payment(request):
     return JsonResponse({
         'api_key': RAZORPAY_API_KEY,
         'order_id': payment_order_id,
+        'success': True,
     })
 
+
+
+
+from django.http import JsonResponse
+from .models import CartItem  # Import your CartItem model
+from django.core.exceptions import ObjectDoesNotExist
+def delete_cart_aftersuccess(request):
+    if request.method == 'POST':
+        try:
+            # Assuming 'pid' is passed in the POST request body
+            data = json.loads(request.body.decode('utf-8'))
+            pid = data.get('upid')
+
+            # Filter CartItem objects by pid and delete them
+            try:
+                cart_item = CartItem.objects.get(userid=pid)
+            except ObjectDoesNotExist:
+                # If no CartItem object is found, return a JsonResponse indicating the error
+                return JsonResponse({'error': 'CartItem with the given pid does not exist'}, status=404)
+
+            # If CartItem object exists, delete it
+            cart_item.delete()
+            
+            return JsonResponse({'success': True})
+        except Exception as e:
+            print("Error:", e)
+            return JsonResponse({'error': str(e)}, status=500)
+    else:
+        # If request method is not POST, return method not allowed
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 
 

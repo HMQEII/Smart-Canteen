@@ -183,61 +183,147 @@
               }
               return cookieValue;
             }
-            document.getElementById('rzp-button1').addEventListener('click', function () {
-              var totalAmountString = document.getElementById('total').innerText;
-              var totalAmountNumeric = parseFloat(totalAmountString.replace(/[^\d.]/g, ''));
-              var usernameElement = document.getElementById('userid');
-              var username = usernameElement.innerText;
-              var email = (username + '@example.com').toLowerCase();
-              console.log(username);
-              console.log(email);
+            // document.getElementById('rzp-button1').addEventListener('click', function () {
+            //   var totalAmountString = document.getElementById('total').innerText;
+            //   var totalAmountNumeric = parseFloat(totalAmountString.replace(/[^\d.]/g, ''));
+            //   var usernameElement = document.getElementById('userid');
+            //   var username = usernameElement.innerText;
+            //   var email = (username + '@example.com').toLowerCase();
+            //   console.log(username);
+            //   console.log(email);
 
-              fetch('/process_payment/', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'X-CSRFToken': getCookie('csrftoken')
-                },
-                body: JSON.stringify({
-                  amount: totalAmountNumeric
+            //   fetch('/process_payment/', {
+            //     method: 'POST',
+            //     headers: {
+            //       'Content-Type': 'application/json',
+            //       'X-CSRFToken': getCookie('csrftoken')
+            //     },
+            //     body: JSON.stringify({
+            //       amount: totalAmountNumeric
+            //     })
+            //   })
+            //     .then(response => {
+            //       if (response.ok) {
+            //         return response.json();
+            //       } else {
+            //         console.error('Error:', response.statusText);
+            //       }
+            //     })
+            //     .then(data => {
+            //       var options = {
+            //         "key": data.api_key,
+            //         "amount": data.amount,
+            //         "currency": data.currency,
+            //         "name": "Smart Canteen",
+            //         "description": "Order Payment",
+            //         "image": "https://drive.google.com/thumbnail?id=1sNawcZcmOmCP57CemNGRqmLvrOESuS0J",
+            //         "order_id": data.order_id,
+            //         "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+            //         "prefill": {
+            //           "name": username,
+            //           "email": email,
+            //           "contact": "9000090000"
+            //         },
+            //         "notes": {
+            //           "address": "Razorpay Corporate Office"
+            //         },
+            //         "theme": {
+            //           "color": "#3399cc"
+            //         }
+            //       };
+            //       var rzp1 = new Razorpay(options);
+            //       rzp1.open();
+            //     })
+            //     .catch(error => {
+            //       console.error('Error:', error);
+            //     });
+            // });
+
+            document.getElementById('rzp-button1').addEventListener('click', function () {
+    var totalAmountString = document.getElementById('total').innerText;
+    var totalAmountNumeric = parseFloat(totalAmountString.replace(/[^\d.]/g, ''));
+    var usernameElement = document.getElementById('userid');
+    var username = usernameElement.innerText;
+    var email = (username + '@example.com').toLowerCase();
+    console.log(username);
+    console.log(email);
+
+    fetch('/process_payment/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({
+            amount: totalAmountNumeric
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+
+        } else {
+            console.error('Error:', response.statusText);
+        }
+    })
+    .then(data => {
+        // Display payment ID in an alert box
+        var options = {
+            "key": data.api_key,
+            "amount": data.amount,
+            "currency": data.currency,
+            "name": "Smart Canteen",
+            "description": "Order Payment",
+            "image": "https://drive.google.com/thumbnail?id=1sNawcZcmOmCP57CemNGRqmLvrOESuS0J",
+            "order_id": data.order_id,
+            // "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+            "prefill": {
+                "name": username,
+                "email": email,
+                "contact": "9000090000"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            },
+            "handler": function(response) {
+                    // Convert order ID to string and display in openPopup
+                    const upid = localStorage.getItem("pid");
+                    var orderId = data.order_id.toString();
+                    openPopup('Your Payment Id is: ' + orderId);
+                    fetch('/delete_cart_aftersuccess/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify({
+                        // Optionally, you can pass any necessary data here
+                        pid: upid,
+                    })
                 })
-              })
                 .then(response => {
-                  if (response.ok) {
-                    return response.json();
-                  } else {
-                    console.error('Error:', response.statusText);
-                  }
-                })
-                .then(data => {
-                  var options = {
-                    "key": data.api_key,
-                    "amount": data.amount,
-                    "currency": data.currency,
-                    "name": "Smart Canteen",
-                    "description": "Order Payment",
-                    "image": "https://drive.google.com/thumbnail?id=1sNawcZcmOmCP57CemNGRqmLvrOESuS0J",
-                    "order_id": data.order_id,
-                    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
-                    "prefill": {
-                      "name": username,
-                      "email": email,
-                      "contact": "9000090000"
-                    },
-                    "notes": {
-                      "address": "Razorpay Corporate Office"
-                    },
-                    "theme": {
-                      "color": "#3399cc"
+                    if (response.ok) {
+                        // Cart items successfully deleted
+                        console.log('Cart items deleted successfully.');
+                        // Perform any additional actions, such as clearing local storage or updating UI
+                    } else {
+                        // Error handling for deletion request
+                        console.error('Error deleting cart items:', response.statusText);
                     }
-                  };
-                  var rzp1 = new Razorpay(options);
-                  rzp1.open();
                 })
-                .catch(error => {
-                  console.error('Error:', error);
-                });
-            });
+                },
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
           </script>
 
 
