@@ -3,12 +3,32 @@
       {
         "src": "backend/wsgi.py",
         "use": "@vercel/python",
-        "config" : {"maxLambdaSize" : "15mb", "runtime": "python3.9"}
+        "config": {
+          "maxLambdaSize": "15mb",
+          "runtime": "python3.9"
+        }
       }
     ],
     "routes": [
-      { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
-      { "src": "/(.*)", "dest": "backend/wsgi.py" }
-    ]
+      {
+        "src": "/static/(.*)",
+        "dest": "/staticfiles/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "backend/wsgi.py"
+      }
+    ],
+    "functions": {
+    "api/**": {
+      "externalPackages": [
+        "opencv-python",
+        "pandas",
+        "scipy",
+        "scikit-learn",
+        "matplotlib"
+      ]
+    }
+  }
   }
   
