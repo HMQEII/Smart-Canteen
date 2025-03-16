@@ -5,7 +5,7 @@ from .models import Customer
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-import io
+import os
 import base64
 # sales_prediction/views.py
 from django.shortcuts import render
@@ -21,6 +21,7 @@ nltk.download('averaged_perceptron_tagger')
 import random
 from django.http import JsonResponse
 import razorpay
+from django.conf import settings
 
 from nltk.tokenize import word_tokenize
 from django.shortcuts import render
@@ -260,8 +261,11 @@ def process_mood(mood):
 
 def sales_prediction_view(request):
     # Read DataFrame from CSV file
-    df = pd.read_csv('A:/Smart-Canteen-master/backend/canteen/static/MP_B15_train_data - Sheet1.csv') # Replace 'your_dataset.csv' with your actual file path
-
+    # df = pd.read_csv(r'../canteen/static/MP_B15_train_data - Sheet1.csv') # Replace 'your_dataset.csv' with your actual file path
+    file_path = os.path.join(settings.BASE_DIR, 'canteen', 'static', 'MP_B15_train_data - Sheet1.csv')
+    
+    # Read DataFrame
+    df = pd.read_csv(file_path)
     # One-hot encoding categorical variables
     df_encoded = pd.get_dummies(df, columns=['time_of_day', 'day_of_week', 'weather', 'food_item'])
 
