@@ -26,10 +26,7 @@ SECRET_KEY = 'django-insecure-0wage-9v_#n^l#b7y&6*w)pvr0sbdvx75_5m(^46=d*kx-n_xk
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = [
-    "smart-canteen-ajao8fc87-aecs-projects-7399e311.vercel.app",
-    "127.0.0.1"
-]
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
