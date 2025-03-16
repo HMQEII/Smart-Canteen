@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-0wage-9v_#n^l#b7y&6*w)pvr0sbdvx75_5m(^46=d*kx-n_xk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "smart-canteen-ajao8fc87-aecs-projects-7399e311.vercel.app",
+    "127.0.0.1"
+]
 
 
 # Application definition
@@ -117,7 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "canteen", 'static')]
 
 # Add this if you haven't already (for serving static files during development)
 if DEBUG:

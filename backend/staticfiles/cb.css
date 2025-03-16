@@ -1,0 +1,125 @@
+
+#chat-container {
+  font-family: 'Poppins', sans-serif; /* Update font-family to Poppins */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: auto;
+  margin: auto;
+  /* height: ; */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+}
+
+#chat {
+  background-color: rgb(229, 240, 239,0.5); /* Transparent background color */
+  padding: 10px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+#user-input {
+  background-color: #f0f0f0;
+  padding: 10px;
+  display: flex;
+  height: 8vh;
+}
+
+#user-mood {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+}
+
+#send-btn {
+  background: linear-gradient(to right, #6499E9, #2EA2AA);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: large;
+  width: fit-content;
+}
+
+#chat-container header {
+  background: linear-gradient(to right, #6499E9, #2EA2AA);
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+#chat p {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 20px;
+  max-width: 60%;
+}
+
+.client-msg {
+  margin-left: auto;
+}
+
+.other-msg {
+  background-color: whitesmoke;
+}
+
+/* Add an icon and user name to the header */
+#chat-container header::before {
+  content: url('path-to-user-icon.png');
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+#chat-container header::after {
+  content: 'User Name';
+  vertical-align: middle;
+}
+
+/* Apply gradient background to even messages and simple background to odd messages */
+#chat p:nth-child(even) {
+  background: linear-gradient(to right, #6499E9, #2EA2AA); /* Blue to Green gradient */
+  color: white; /* Text color for gradient backgrounds */
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+#chat p:nth-child(odd) {
+  margin-right: auto;
+  margin-left: 5px;
+  background-color: whitesmoke;
+}
+
+
+
+.chatbot-button {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  z-index: 1000; /* Ensure the button is above other content */
+  background-color: #162938; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* No border */
+  border-radius: 50%; /* Make it circular */
+  padding: 15px; /* Adjust padding as needed */
+  font-size: 30px; /* Adjust font size as needed */
+  cursor: pointer; /* Show pointer cursor on hover */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add shadow */
+  align-content: center;
+  width: fit-content;
+  height: 12%;
+}
+.chatbot-container {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 65vh; /* Adjust width as needed */
+  height: 85%; /* Adjust height as needed */
+  border: 1px solid #ccc;
+  background-color: transparent;
+  z-index: 1000;
+}

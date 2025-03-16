@@ -1,0 +1,48 @@
+food_item,time_of_day,day_of_week,weather,special_event,demand
+Vada Pav,evening,Monday,cloudy,0,10
+Samosa Pav,evening,Monday,cloudy,0,10
+Veg Frankie,evening,Tuesday,sunny,0,20
+Cheese Frankie,evening,Friday,sunny,1,36
+Veg Hotdog,morning,Saturday,sunny,0,15
+V. Manchurian,afternoon,Monday,rainy,0,50
+Cutlet,morning,Thursday,rainy,0,14
+Bhajiye,evening,Wednesday,cloudy,0,30
+Pakoda,evening,Wednesday,rainy,0,46
+Spring Roll,evening,Friday,sunny,1,27
+Paneer Bhaji,afternoon,Monday,rainy,1,19
+Paneer Handi,afternoon,Friday,sunny,1,7
+Masala Dosa,morning,Wednesday,rainy,1,10
+Dabeli,evening,Thursday,cloudy,0,5
+Sev Puri,evening,Thursday,cloudy,0,20
+Chapati,evening,Monday,sunny,0,15
+Pav,evening,Monday,sunny,0,10
+Chole Bhature,afternoon,Friday,cloudy,1,50
+Veg. Biryani,afternoon,Saturday,sunny,1,100
+Aubergine Dish,afternoon,Wednesday,rainy,1,2
+Missle Pav,evening,Tuesday,cloudy,0,90
+V. Fried Rice,afternoon,Monday,rainy,0,240
+V. Noodles,afternoon,Monday,rainy,0,240
+Burger,morning,Saturday,rainy,1,60
+Chic. Hotdogs,morning,Friday,rainy,1,45
+Chic. Spring Rolls,morning,Saturday,cloudy,0,37
+Chicken Lolipops,afternoon,Friday,cloudy,0,50
+Chic. Handi,afternoon,Thursday,cloudy,1,60
+Biryani,afternoon,Wednesday,rainy,1,240
+Egg Masala,afternoon,Wednesday,cloudy,0,29
+Chic. gravy,afternoon,Wednesday,rainy,1,38
+Non-V. Fried Rice,afternoon,Monday,cloudy,0,215
+Non-V. Noodles,afternoon,Monday,sunny,0,185
+Smooth,morning,Thursday,rainy,0,17
+Mirinda,evening,Wednesday,sunny,0,20
+Pepsi,afternoon,Tuesday,cloudy,0,43
+Pepsi Zero,afternoon,Wednesday,rainy,1,48
+Thumbs Up,evening,Friday,sunny,0,61
+Mount. Dew,afternoon,Monday,cloudy,0,80
+Nestle Cold Coffee,morning,Tuesday,cloudy,1,22
+Real Mixed Fruit,evening,Thursday,sunny,0,34
+Tropicana,evening,Monday,sunny,1,54
+Flat White Coffee,morning,Monday,cloudy,0,70
+Tea,morning,Monday,rainy,0,19
+Frooti,morning,Friday,cloudy,0,31
+Slice,morning,Monday,cloudy,0,10
+Milkshake,afternoon,Thursday,sunny,1,63
