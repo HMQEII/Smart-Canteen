@@ -1,14 +1,104 @@
+// {
+//     "builds": [
+//       {
+//         "src": "backend/wsgi.py",
+//         "use": "@vercel/python",
+//         "config": {
+//           "maxLambdaSize": "15mb",
+//           "runtime": "python3.9"
+//         }
+//       }
+//     ],
+//     "routes": [
+//       {
+//         "src": "/static/(.*)",
+//         "dest": "/staticfiles/$1"
+//       },
+//       {
+//         "src": "/(.*)",
+//         "dest": "backend/wsgi.py"
+//       }
+//     ],
+//     "functions": {
+//     "api/**": {
+//       "externalPackages": [
+//         "opencv-python",
+//         "pandas",
+//         "scipy",
+//         "scikit-learn",
+//         "matplotlib"
+//       ]
+//     }
+//   }
+//   }
+  
+
+
 {
-    "builds": [
-      {
-        "src": "backend/wsgi.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "15mb",
-          "runtime": "python3.9"
-        }
+    "functions": {
+      "backend/wsgi.py": {
+        "runtime": "python3.9",
+        "maxLambdaSize": "250mb",
+        "externalPackages": [
+          "asgiref",
+          "attrs",
+          "blinker",
+          "certifi",
+          "cffi",
+          "charset-normalizer",
+          "click",
+          "colorama",
+          "contourpy",
+          "cycler",
+          "Django",
+          "Flask",
+          "fonttools",
+          "h11",
+          "idna",
+          "itsdangerous",
+          "Jinja2",
+          "joblib",
+          "kiwisolver",
+          "MarkupSafe",
+          "matplotlib",
+          "mrjob",
+          "nltk",
+          "numpy",
+          "opencv-python-headless",
+          "outcome",
+          "packaging",
+          "pandas",
+          "pillow",
+          "pycparser",
+          "pyparsing",
+          "PySocks",
+          "python-dateutil",
+          "pytz",
+          "PyYAML",
+          "pyzbar",
+          "razorpay",
+          "regex",
+          "requests",
+          "scikit-learn",
+          "scipy",
+          "selenium",
+          "setuptools",
+          "six",
+          "sniffio",
+          "sortedcontainers",
+          "sqlparse",
+          "threadpoolctl",
+          "tqdm",
+          "trio",
+          "trio-websocket",
+          "typing_extensions",
+          "tzdata",
+          "urllib3",
+          "Werkzeug",
+          "wsproto"
+        ]
       }
-    ],
+    },
     "routes": [
       {
         "src": "/static/(.*)",
@@ -18,17 +108,6 @@
         "src": "/(.*)",
         "dest": "backend/wsgi.py"
       }
-    ],
-    "functions": {
-    "api/**": {
-      "externalPackages": [
-        "opencv-python",
-        "pandas",
-        "scipy",
-        "scikit-learn",
-        "matplotlib"
-      ]
-    }
-  }
+    ]
   }
   
